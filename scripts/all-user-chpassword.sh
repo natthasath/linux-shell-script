@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Config new password for the user
-new_password="changeme"
+password="changeme"
 
 # Get a list of all users
 users=$(cut -d: -f1 /etc/passwd)
@@ -14,5 +14,5 @@ for user in $users; do
     fi
     echo "Resetting password for user: $user"
     # Set the new password for the user
-    echo "$user:$new_password" | chpasswd
+    echo "$user:$password" | chpasswd
 done
