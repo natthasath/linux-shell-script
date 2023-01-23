@@ -1,14 +1,17 @@
 #!/bin/bash
 
+# Config new NTP Servers
+config_ntp_servers="th.pool.ntp.org"
+
 # Get current NTP servers
-ntp_servers=$(grep "^NTP=" /etc/systemd/timesyncd.conf | awk -F= '{print $2}')
+current_ntp_servers=$(grep "^NTP=" /etc/systemd/timesyncd.conf | awk -F= '{print $2}')
 
 # Add new NTP server to list
-ntp_servers="$ntp_servers th.pool.ntp.org"
+new_ntp_servers=$config_ntp_servers
 
 # Update timesyncd.conf file
 sudo sed -i '/NTP/ s/^#//' /etc/systemd/timesyncd.conf
-sudo sed -i "s/^NTP=.*/NTP=$ntp_servers/" /etc/systemd/timesyncd.conf
+sudo sed -i "s/^NTP=.*/NTP=$new_ntp_servers/" /etc/systemd/timesyncd.conf
 
 # Restart timesyncd service
 sudo systemctl restart systemd-timesyncd
