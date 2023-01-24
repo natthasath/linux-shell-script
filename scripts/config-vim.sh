@@ -10,8 +10,7 @@ echo "set cursorline" >> ~/.vimrc
 echo "syntax on" >> ~/.vimrc
 
 # Install a plugin manager
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Append Plugins to .vimrc
 echo "call plug#begin('~/.vim/plugged')" >> ~/.vimrc

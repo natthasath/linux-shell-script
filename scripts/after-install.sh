@@ -1,72 +1,38 @@
 #!/bin/bash
 
-# Add usernames to add to /etc/sudoers for passwordless sudo
-users=("ubuntu" "admin")
+# Get the input new user
+user=$1
 
-for user in "${users[@]}"
-do
-  cat /etc/sudoers | grep ^$user
-  RC=$?
-  if [ $RC != 0 ]; then
-    bash -c "echo \"$user ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers"
-  fi
-done
+# Update the system
+sudo apt-get update -y
+sudo apt-get upgrade -y
 
-#add VMware package keys
-# wget http://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-DSA-KEY.pub -O - | apt-key add -
-# wget http://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub -O - | apt-key add -
+# Install essential packages
+sudo apt-get install -y build-essential git curl wget unzip net-tools
 
-#grab Ubuntu Codename
-codename="$(lsb_release -c | awk {'print $2}')"
+# Install additional software
+sudo apt-get install -y htop glances nano tree neovim
 
-#add VMware repository to install open-vm-tools-deploypkg
-# echo "deb http://packages.vmware.com/packages/ubuntu $codename main" > /etc/apt/sources.list.d/vmware-tools.list
+# Install development tools
+sudo apt-get install -y python3 python3-pip
 
-#update apt-cache
-apt-get update
+# Create a new user
+sudo adduser $user
+sudo usermod -aG sudo $user
 
-#install packages
-# apt-get install -y open-vm-tools
-apt-get install -y python-minimal
+# Set up SSH for the new user
+sudo su $user
+mkdir ~/.ssh
+chmod 700 ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+exit
 
-#Stop services for cleanup
-service rsyslog stop
+# Install a firewall
+sudo apt-get install -y ufw
+sudo ufw allow ssh
+sudo ufw enable
 
-#clear audit logs
-if [ -f /var/log/audit/audit.log ]; then
-    cat /dev/null > /var/log/audit/audit.log
-fi
-if [ -f /var/log/wtmp ]; then
-    cat /dev/null > /var/log/wtmp
-fi
-if [ -f /var/log/lastlog ]; then
-    cat /dev/null > /var/log/lastlog
-fi
-
-#cleanup persistent udev rules
-if [ -f /etc/udev/rules.d/70-persistent-net.rules ]; then
-    rm /etc/udev/rules.d/70-persistent-net.rules
-fi
-
-#cleanup /tmp directories
-rm -rf /tmp/*
-rm -rf /var/tmp/*
-
-#cleanup current ssh keys
-rm -f /etc/ssh/ssh_host_*
-
-#add check for ssh keys on reboot...regenerate if neccessary
-sed -i -e 's|exit 0||' /etc/rc.local
-sed -i -e 's|.*test -f /etc/ssh/ssh_host_dsa_key.*||' /etc/rc.local
-bash -c 'echo "test -f /etc/ssh/ssh_host_dsa_key || dpkg-reconfigure openssh-server" >> /etc/rc.local'
-bash -c 'echo "exit 0" >> /etc/rc.local'
-
-#reset hostname
-cat /dev/null > /etc/hostname
-
-#cleanup apt
-apt-get clean
-
-#cleanup shell history
-history -w
-history -c
+# Enable automatic security updates
+sudo apt-get install -y unattended-upgrades
+sudo dpkg-reconfigure -plow unattended-upgrades
