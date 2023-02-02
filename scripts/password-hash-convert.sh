@@ -14,6 +14,6 @@ case $choice in
   *) echo "Invalid choice"; exit 1;;
 esac
 
-read -s -p "Enter password: " password
-hash=$(echo -n "$password" | $algorithm | awk '{print $1}')
-echo "Password Hash: $hash"
+read -p "Enter text: " text
+hash=$(echo -n "$text" | $algorithm | awk '{print $1}')
+echo "Hash: $hash"
