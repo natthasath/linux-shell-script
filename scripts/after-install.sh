@@ -8,7 +8,7 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 
 # Install essential packages
-sudo apt-get install -y build-essential git curl wget unzip net-tools
+sudo apt-get install -y build-essential git curl wget unzip net-tools tree
 
 # Install additional software
 sudo apt-get install -y htop glances iftop nmap chkrootkit nano tree neovim clamav
