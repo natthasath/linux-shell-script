@@ -7,17 +7,18 @@ A Linux shell script automates tasks in a Linux environment by executing command
 
 ### 🧩 Package
 
-| Package      | Description                                           |
-|--------------|-------------------------------------------------------|
-| htop         | Interactive process viewer and system monitor         |
-| glances      | Cross-platform monitoring tool                        |
-| iftop        | Real-time console-based network bandwidth monitor     |
-| nmap         | Network exploration tool and security scanner         |
-| chkrootkit   | Rootkit detector for Linux systems                    |
-| nano         | Text editor for the console                           |
-| tree         | Display directory tree structure                      |
-| neovim       | Vim-fork focused on extensibility and usability       |
-| clamav       | Antivirus software toolkit                            |
-| jq           | Lightweight and flexible command-line JSON processor  |
-| screenfetch  | Bash screenshot information tool                      |
-| neofetch     | Fast, highly customizable system info script          |
+| Package                 | Description                                                       |
+|-------------------------|-------------------------------------------------------------------|
+| htop                    | Interactive process viewer                                        |
+| glances                 | System monitoring tool                                            |
+| iftop                   | Real-time console-based network bandwidth monitoring              |
+| nmap                    | Network exploration tool and security scanner                     |
+| chkrootkit              | Rootkit checker                                                   |
+| nano                    | Text editor with command line syntax highlighting                 |
+| tree                    | Display directory tree structure                                  |
+| neovim                  | Vim text editor improved                                          |
+| clamav                  | Antivirus software                                                |
+| jq                      | Lightweight and flexible command-line JSON processor              |
+| inetutils-traceroute    | Traceroute tool from inetutils                                    |
+| screenfetch             | System information tool                                           |
+| neofetch                | Fast, highly customizable system info script                      |
