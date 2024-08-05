@@ -11,7 +11,7 @@ sudo apt-get upgrade -y
 sudo apt-get install -y build-essential git curl wget unzip net-tools tree
 
 # Install additional software
-sudo apt-get install -y htop glances iftop nmap chkrootkit nano tree neovim clamav jq inetutils-traceroute screenfetch neofetch
+sudo apt-get install -y htop glances iftop nmap chkrootkit nano tree neovim clamav jq inetutils-traceroute screenfetch neofetch ghostscript
 
 # Install development tools
 sudo apt-get install -y python3 python3-pip
