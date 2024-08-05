@@ -22,3 +22,4 @@ A Linux shell script automates tasks in a Linux environment by executing command
 | inetutils-traceroute    | Traceroute tool from inetutils                                    |
 | screenfetch             | System information tool                                           |
 | neofetch                | Fast, highly customizable system info script                      |
+| ghostscript             | Interpreter for PostScript and PDF files                         |
