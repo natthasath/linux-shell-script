@@ -18,7 +18,7 @@ sudo apt-get install -y python3 python3-pip
 
 # Create a new user
 sudo adduser $user
-sudo usermod -aG sudo $user
+sudo usermod -aG sudo,adm,cdrom,dip,plugdev,lxd $user
 
 # Set up SSH for the new user
 sudo su $user
